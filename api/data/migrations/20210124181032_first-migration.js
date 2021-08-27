@@ -7,6 +7,7 @@ exports.up = async (knex) => {
     })
   await knex.schema
     .createTable('teams', (teams) => {
+      teams.increments('team_id')
       teams.string('PG', 40).notNullable()
       teams.string('SG', 40).notNullable()
       teams.string('SF', 40).notNullable()
@@ -20,6 +21,6 @@ exports.up = async (knex) => {
 }
 
 exports.down = async (knex) => {
-  await knex.schema.dropTableIfExists('users')
   await knex.schema.dropTableIfExists('teams')
+  await knex.schema.dropTableIfExists('users')
 }
