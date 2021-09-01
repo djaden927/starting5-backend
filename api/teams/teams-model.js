@@ -6,7 +6,15 @@ async function addTeam(team) {
     return newTeam 
 }
 
+async function getTop5(){
+    console.log("teamsmodel")
+    const leaders = await db('teams').whereNotNull('win_percentage').orderBy('win_percentage', 'desc').limit(3)
+    console.log(leaders)
+    return leaders
+}
+
 
 module.exports = {
-    addTeam
+    addTeam,
+    getTop5
 }

@@ -4,6 +4,8 @@ const cors = require('cors')
 const { restrict } = require('./restricted/restricted.js');
 const authRouter = require('./auth/auth-router.js');
 const teamsRouter = require('./teams/teams-router.js');
+const voteRouter = require('./voting/vote-router.js');
+const leaderBoardRouter = require('./LeaderBoard/Leaderboard-router.js')
 
 // function getAllUsers() { return db('users') }
 
@@ -22,6 +24,8 @@ server.use(cors())
 
 server.use('/api/auth', authRouter)
 server.use('/api/teams', restrict, teamsRouter)
+server.use('/api/vote', restrict, voteRouter)
+server.use('/api/leaderboard', restrict, leaderBoardRouter)
 
 server.use((err, req, res, next) => { // eslint-disable-line
   res.status(err.status || 500).json({
